@@ -12,11 +12,12 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.Text
+import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.utils.HorizontalSpacer
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
-fun SummaryScreen() {
+fun SummaryScreen(viewModel: ClientDataViewModel) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -48,7 +49,7 @@ fun SummaryScreen() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            CircleBox(0, "cal", 0f)
+            CircleBox(viewModel.calories.value, "cal", 0f)
 
             HorizontalSpacer(width = 4.dp)
 

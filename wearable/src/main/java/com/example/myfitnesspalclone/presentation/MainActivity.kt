@@ -7,35 +7,32 @@
 package com.example.myfitnesspalclone.presentation
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.ui.platform.LocalContext
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.example.myfitnesspalclone.presentation.navigation.FitnessPalNavHost
 import com.google.android.gms.wearable.Wearable
 
 class MainActivity : ComponentActivity() {
-    private val messageClient by lazy { Wearable.getMessageClient(this) }
-    private val clientDataViewModel by viewModels<ClientDataViewModel>()
+    private val dataClient by lazy { Wearable.getDataClient(this) }
+    private val viewModel by viewModels<ClientDataViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val navHostController = rememberSwipeDismissableNavController()
-            FitnessPalNavHost(navController = navHostController, events = clientDataViewModel.events)
-//            Toast.makeText(LocalContext.current, clientDataViewModel.events[0].text ?: "nothing", Toast.LENGTH_LONG).show()
+            FitnessPalNavHost(navController = navHostController, viewModel = viewModel, dataClient = dataClient)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        messageClient.addListener(clientDataViewModel)
+        dataClient.addListener(viewModel)
     }
 
     override fun onPause() {
         super.onPause()
-        messageClient.removeListener(clientDataViewModel)
+        dataClient.removeListener(viewModel)
     }
 }

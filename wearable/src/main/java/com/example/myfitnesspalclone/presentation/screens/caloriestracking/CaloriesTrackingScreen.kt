@@ -40,6 +40,7 @@ import androidx.wear.compose.material.Text
 import androidx.wear.input.RemoteInputIntentHelper
 import androidx.wear.input.wearableExtender
 import com.example.myfitnesspalclone.R
+import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.components.NavButton
 import com.example.myfitnesspalclone.presentation.navigation.Screens
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
@@ -48,7 +49,8 @@ import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CaloriesTrackingScreen(
-    onDoneButtonClick: () -> Unit
+    viewModel: ClientDataViewModel,
+    onDoneButtonClick: (calories: Int) -> Unit
 ) {
 //    var textFieldValue by remember { mutableStateOf("") }
 //    val keyboardController = LocalSoftwareKeyboardController.current
@@ -89,7 +91,7 @@ fun CaloriesTrackingScreen(
 
     LaunchedEffect(key1 = fullProgress.value) {
         if(fullProgress.value == 1.0f) {
-            onDoneButtonClick()
+            onDoneButtonClick(viewModel.calories.value)
         }
     }
 
@@ -144,16 +146,15 @@ fun CaloriesTrackingScreen(
 //            )
 
                 if (textForUserInput.isNotEmpty()) {
+                    viewModel.calories.value = textForUserInput.toInt()
                     Text(
-                        text = textForUserInput,
+                        text = viewModel.calories.value.toString(),
                         fontSize = 40.sp,
                         lineHeight = 40.sp
                     )
                 } else {
                     Text(text = "ex. 250", color = Color(0xFF808080), fontSize = 40.sp)
                 }
-
-
             }
 
 

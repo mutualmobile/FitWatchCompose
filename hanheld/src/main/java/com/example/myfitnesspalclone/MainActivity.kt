@@ -1,7 +1,6 @@
 package com.example.myfitnesspalclone
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -28,21 +27,14 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.lifecycleScope
+import androidx.compose.ui.unit.sp
 import com.example.myfitnesspalclone.ui.theme.MyFitnessPalCloneTheme
-import com.google.android.gms.wearable.PutDataMapRequest
 import com.google.android.gms.wearable.Wearable
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 class MainActivity : ComponentActivity() {
 
-    private val messageClient by lazy { Wearable.getMessageClient(this) }
-    private val nodeClient by lazy { Wearable.getNodeClient(this) }
-    private val clientDataViewModel by viewModels<ClientDataViewModel>()
+    private val dataClient by lazy { Wearable.getDataClient(this) }
+    private val viewModel by viewModels<ClientDataViewModel>()
 
     @OptIn(ExperimentalComposeUiApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,9 +73,13 @@ class MainActivity : ComponentActivity() {
 
                         Spacer(modifier = Modifier.height(4.dp))
 
-                        Button(onClick = { sendCaloriesData(textValue) }) {
+                        Button(onClick = { viewModel.updateCalories(dataClient, textValue) }) {
                             Text(text = "Send")
                         }
+
+                        Spacer(modifier = Modifier.height(32.dp))
+
+                        Text(text = "Calories: ${viewModel.calories.value}", fontSize = 48.sp)
                     }
                 }
             }
@@ -92,37 +88,15 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        messageClient.addListener(clientDataViewModel)
+        dataClient.addListener(viewModel)
     }
 
     override fun onPause() {
         super.onPause()
-        messageClient.removeListener(clientDataViewModel)
+        dataClient.removeListener(viewModel)
     }
 
-    private fun sendCaloriesData(calories: Int) {
-        lifecycleScope.launch {
-            try {
-                val nodes = nodeClient.connectedNodes.await()
 
-                nodes.map {node ->
-                    async {
-                        messageClient.sendMessage(node.id, CALORIES_PATH, calories.toString().toByteArray())
-                            .await()
-                    }
-                }.awaitAll()
-                Log.d(TAG, "Calories data requests sent successfully")
-            }catch (cancellationException: CancellationException) {
-                throw cancellationException
-            } catch (exception: Exception) {
-                Log.d(TAG, "Sending calories data failed: $exception")
-            }
-        }
-    }
 
-    companion object {
-        private const val TAG = "MainActivity"
-        private const val CALORIES_PATH = "/calories"
-        private const val CALORIES_KEY = "calories_key"
-    }
+
 }

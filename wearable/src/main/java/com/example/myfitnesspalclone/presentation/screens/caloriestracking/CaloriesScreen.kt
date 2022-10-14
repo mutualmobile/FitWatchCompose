@@ -11,13 +11,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
 import androidx.wear.compose.material.*
+import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.components.NavButton
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
-fun CaloriesScreen(onAddMealClick: () -> Unit) {
+fun CaloriesScreen(viewModel: ClientDataViewModel, onAddMealClick: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -32,7 +34,7 @@ fun CaloriesScreen(onAddMealClick: () -> Unit) {
             VerticalSpacer(height = 4.dp)
 
             Text(
-                text = "45",
+                text = viewModel.calories.value.toString(),
                 style = TextStyle(
                     fontSize = 44.sp,
                     color = Color(0xFF3f99fc),

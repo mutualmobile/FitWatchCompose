@@ -1,37 +1,35 @@
 package com.example.myfitnesspalclone.presentation.data
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Fireplace
-import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.myfitnesspalclone.R
 
 data class FeatureListItem(
-    val icon: ImageVector,
+    val icon: Int,
     val title: String
 )
 
 val mockFeatureItems = listOf(
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_summary,
         title = "View summary"
     ),
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_align,
         title = "Nutrients"
     ),
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_fire,
         title = "Add calories"
     ),
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_water,
         title = "Add water"
     ),
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_phone,
         title = "Open on phone"
     ),
     FeatureListItem(
-        icon = Icons.Default.Fireplace,
+        icon = R.drawable.ic_logout,
         title = "Log out"
     ),
 )

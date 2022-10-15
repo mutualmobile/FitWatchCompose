@@ -1,11 +1,23 @@
 package com.example.myfitnesspalclone.presentation.screens.featureslist
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.*
+import androidx.wear.compose.material.Card
+import androidx.wear.compose.material.Icon
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.ScalingLazyColumn
+import androidx.wear.compose.material.ScalingLazyColumnDefaults
+import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.rememberScalingLazyListState
 import com.example.myfitnesspalclone.presentation.data.mockFeatureItems
 
 @Composable
@@ -45,7 +57,7 @@ fun FeaturesList(onClick: (id: Int) -> Unit) {
 @Composable
 fun FeatureCard(
     modifier: Modifier = Modifier,
-    icon: ImageVector,
+    icon: Int,
     title: String,
     id: Int,
     onClick: (id: Int) -> Unit
@@ -58,7 +70,7 @@ fun FeatureCard(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start
         ) {
-            Icon(imageVector = icon, contentDescription = "")
+            Icon(painter = painterResource(id = icon), contentDescription = "")
             Spacer(modifier = Modifier.width(16.dp))
             Text(text = title)
         }

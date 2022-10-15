@@ -61,6 +61,8 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+
     implementation "com.google.android.gms:play-services-wearable:18.0.0"
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")

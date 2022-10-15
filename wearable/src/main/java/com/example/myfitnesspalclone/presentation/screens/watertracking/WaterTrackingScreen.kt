@@ -1,8 +1,6 @@
 package com.example.myfitnesspalclone.presentation.screens.watertracking
 
-import androidx.compose.animation.core.Spring.DampingRatioHighBouncy
 import androidx.compose.animation.core.Spring.DampingRatioLowBouncy
-import androidx.compose.animation.core.Spring.DampingRatioMediumBouncy
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Box
@@ -11,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,22 +19,25 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.Text
+import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.components.NavButton
-import com.example.myfitnesspalclone.presentation.navigation.Screens
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
+import com.google.android.gms.wearable.DataClient
 
 @Composable
-fun WaterTrackingScreen() {
+fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) {
 
-    var waterCount by remember { mutableStateOf(0) }
-    val waterTarget by remember { mutableStateOf(8f) }
+    val waterCount = viewModel.waterValue.value
+    val waterTarget = viewModel.waterGoal.value
+    val progress = (waterCount.toInt().toFloat() / waterTarget.toFloat())
+    progress
 
     val waterFloatAnim = animateFloatAsState(
-        targetValue = if (waterCount == 0) {
+        targetValue = if (waterCount.toInt() == 0) {
             0f
         } else {
-            waterCount / waterTarget
+            progress
         },
         animationSpec = spring(DampingRatioLowBouncy)
     )
@@ -55,7 +56,7 @@ fun WaterTrackingScreen() {
             VerticalSpacer(height = 4.dp)
 
             Text(
-                text = waterCount.toString(),
+                text = viewModel.waterValue.value.toString(),
                 style = TextStyle(
                     fontSize = 44.sp,
                     color = Color(0xFF7daade),
@@ -66,7 +67,7 @@ fun WaterTrackingScreen() {
             VerticalSpacer(height = 4.dp)
 
             NavButton(imageVector = Icons.Rounded.Add) {
-                waterCount += 1
+                viewModel.updateWater(dataClient = dataClient, waterValue = waterCount + 1)
             }
         }
 

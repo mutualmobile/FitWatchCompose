@@ -1,7 +1,6 @@
 package com.example.myfitnesspalclone.presentation.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
@@ -43,7 +42,7 @@ fun FitnessPalNavHost(navController: NavHostController, viewModel: ClientDataVie
         }
 
         composable(Screens.SummaryScreen.route) {
-            SummaryScreen()
+            SummaryScreen(viewModel = viewModel)
         }
 
         composable(Screens.CaloriesScreen.route) {
@@ -69,7 +68,7 @@ fun FitnessPalNavHost(navController: NavHostController, viewModel: ClientDataVie
         }
 
         composable(Screens.WaterTrackingScreen.route) {
-            WaterTrackingScreen()
+            WaterTrackingScreen(viewModel = viewModel, dataClient = dataClient)
         }
 
         composable(Screens.NutrientsScreen.route) {

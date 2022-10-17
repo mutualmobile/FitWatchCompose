@@ -1,9 +1,15 @@
 package com.example.myfitnesspalclone.presentation.screens.summarylist
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -11,6 +17,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.Text
 import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.utils.HorizontalSpacer
@@ -32,15 +39,15 @@ fun SummaryScreen(viewModel: ClientDataViewModel) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            CircleBox(value = 0, text = "carbs", progress = 0f)
+            CircleBox(value = 0, text = "carbs", goal = null)
 
             HorizontalSpacer(width = 4.dp)
 
-            CircleBox(0, "fat", 0f)
+            CircleBox(0, "fat", goal = null)
 
             HorizontalSpacer(width = 4.dp)
 
-            CircleBox(0, "protein", 0f)
+            CircleBox(0, "protein", goal = null)
 
 
         }
@@ -49,11 +56,11 @@ fun SummaryScreen(viewModel: ClientDataViewModel) {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            CircleBox(viewModel.calories.value, "cal", 0f)
+            CircleBox(viewModel.calories.value, "cal", viewModel.caloriesGoal.value)
 
             HorizontalSpacer(width = 4.dp)
 
-            CircleBox(0, "water", 0f)
+            CircleBox(viewModel.waterValue.value, "water", viewModel.waterGoal.value)
 
         }
 
@@ -62,17 +69,27 @@ fun SummaryScreen(viewModel: ClientDataViewModel) {
 }
 
 @Composable
-fun CircleBox(value: Int, text: String, progress: Float) {
+fun CircleBox(value: Int, text: String, goal: Int?) {
+
+    val progress: Float by remember {
+        try {
+            mutableStateOf((value.toFloat() / goal!!.toFloat()))
+        } catch(e: NullPointerException) {
+            return@remember mutableStateOf(0f)
+        }
+    }
+
     Box(
         modifier = Modifier
-            .size(58.dp)
-            .border(
-                width = 4.dp,
-                color = Color(0xFF383838),
-                shape = CircleShape
-            ),
+            .size(58.dp),
         contentAlignment = Alignment.Center
     ) {
+
+        CircularProgressIndicator(
+            modifier = Modifier.matchParentSize(),
+            progress = progress
+        )
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center

@@ -71,7 +71,7 @@ fun SummaryScreen(viewModel: ClientDataViewModel) {
 @Composable
 fun CircleBox(value: Int, text: String, goal: Int?) {
 
-    val progress: Float by remember {
+    val progress: Float by remember(value, goal) {
         try {
             mutableStateOf((value.toFloat() / goal!!.toFloat()))
         } catch(e: NullPointerException) {

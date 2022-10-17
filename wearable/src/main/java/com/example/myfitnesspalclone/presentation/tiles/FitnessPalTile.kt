@@ -72,10 +72,9 @@ fun GlanceCircleBox(value: Int, text: String, progress: Float) {
             .size(58.dp),
         contentAlignment = Alignment.Center
     ) {
-
+//
 //        CircularProgressIndicator(
 //            modifier = Modifier.size(58.dp),
-//            progress = progress
 //        )
 
         Column(

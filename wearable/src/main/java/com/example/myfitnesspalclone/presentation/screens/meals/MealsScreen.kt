@@ -1,23 +1,30 @@
 package com.example.myfitnesspalclone.presentation.screens.meals
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.MaterialTheme
 import androidx.wear.compose.material.Picker
-import androidx.wear.compose.material.PickerDefaults
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberPickerState
 import com.example.myfitnesspalclone.presentation.components.NavButton
-import com.example.myfitnesspalclone.presentation.navigation.Screens
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
@@ -60,11 +67,8 @@ fun MealsScreen(
                 .height(48.dp)
                 .fillMaxWidth(),
             state = pickerState,
-            scalingParams = PickerDefaults.scalingParams(
-                maxElementHeight = 1.5f
-            )
         ) {
-            Text(text = pickerOptions[this.selectedOption])
+            MealsPicker(text = pickerOptions[it], style = MaterialTheme.typography.title2)
         }
 
         VerticalSpacer(height = (12.dp))
@@ -73,6 +77,26 @@ fun MealsScreen(
             onNavButtonClick()
         }
 
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+fun MealsPicker(
+    text: String,
+    style: TextStyle
+) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        val modifier = Modifier
+            .align(Alignment.Center)
+            .wrapContentSize()
+        Text(
+            text = text,
+            maxLines = 1,
+            color = Color(0xFF3f99fc),
+            style = style,
+            modifier = modifier
+        )
     }
 }
 

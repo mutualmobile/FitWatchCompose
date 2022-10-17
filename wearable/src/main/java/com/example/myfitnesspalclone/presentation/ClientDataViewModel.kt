@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutionException
 
-class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
+class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener{
 
     val calories = mutableStateOf(0)
     val caloriesGoal = mutableStateOf(2000)

@@ -15,12 +15,18 @@ import com.example.myfitnesspalclone.presentation.screens.watertracking.WaterTra
 import com.google.android.gms.wearable.DataClient
 
 @Composable
-fun FitnessPalNavHost(navController: NavHostController, viewModel: ClientDataViewModel, dataClient: DataClient) {
+fun FitnessPalNavHost(
+    navController: NavHostController,
+    viewModel: ClientDataViewModel,
+    dataClient: DataClient,
+    onStartHandheldActivity: () -> Unit,
+) {
     SwipeDismissableNavHost(
-        navController = navController, startDestination = Screens.FeatureListScreen.route
+        navController = navController,
+        startDestination = Screens.FeatureListScreen.route,
     ) {
         composable(Screens.FeatureListScreen.route) {
-            FeaturesList() { id ->
+            FeaturesList { id ->
                 when (id) {
                     0 -> {
                         navController.navigate(Screens.SummaryScreen.route)
@@ -36,6 +42,10 @@ fun FitnessPalNavHost(navController: NavHostController, viewModel: ClientDataVie
 
                     3 -> {
                         navController.navigate(Screens.WaterTrackingScreen.route)
+                    }
+
+                    4 -> {
+                        onStartHandheldActivity()
                     }
                 }
             }

@@ -31,7 +31,6 @@ fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) 
     val waterCount = viewModel.waterValue.value
     val waterTarget = viewModel.waterGoal.value
     val progress = (waterCount.toInt().toFloat() / waterTarget.toFloat())
-    progress
 
     val waterFloatAnim = animateFloatAsState(
         targetValue = if (waterCount.toInt() == 0) {

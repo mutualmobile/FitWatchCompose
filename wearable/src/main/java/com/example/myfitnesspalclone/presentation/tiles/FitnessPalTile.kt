@@ -1,23 +1,16 @@
 package com.example.myfitnesspalclone.presentation.tiles
 
-import androidx.compose.foundation.border
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.glance.GlanceModifier
-import androidx.glance.ImageProvider
-import androidx.glance.appwidget.cornerRadius
-import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Box
 import androidx.glance.layout.Column
-import androidx.glance.layout.ContentScale
 import androidx.glance.layout.Row
 import androidx.glance.layout.Spacer
-import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.size
@@ -27,9 +20,6 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import androidx.glance.wear.tiles.GlanceTileService
-import androidx.glance.wear.tiles.border
-import androidx.glance.wear.tiles.curved.CurvedRow
-import com.example.myfitnesspalclone.R
 
 class FitnessPalTile : GlanceTileService() {
 
@@ -79,10 +69,15 @@ class FitnessPalTile : GlanceTileService() {
 fun GlanceCircleBox(value: Int, text: String, progress: Float) {
     Box(
         modifier = GlanceModifier
-            .size(58.dp)
-            .background(imageProvider = ImageProvider(R.drawable.tile_placeholder), contentScale = ContentScale.Fit),
+            .size(58.dp),
         contentAlignment = Alignment.Center
     ) {
+
+//        CircularProgressIndicator(
+//            modifier = Modifier.size(58.dp),
+//            progress = progress
+//        )
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalAlignment = Alignment.CenterVertically

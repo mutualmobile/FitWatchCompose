@@ -5,4 +5,6 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
+    <string name="confirmation_dialog_tick">Tick</string>
+    <string name="confirmation_dialog_success">Success \nActivity Launched</string>
 </resources>

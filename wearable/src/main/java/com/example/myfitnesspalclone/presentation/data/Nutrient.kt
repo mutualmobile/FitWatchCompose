@@ -13,7 +13,7 @@ val mockNutrientsList = listOf(
     ),
     Nutrient(
         name = "Carbohydrates",
-        value = 90f,
+        value = 390f,
         target = 1000f,
         color = Color(0xFF002a27)
     ),

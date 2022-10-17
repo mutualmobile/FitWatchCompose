@@ -12,7 +12,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
@@ -20,6 +19,8 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.Text
 import com.example.myfitnesspalclone.presentation.ClientDataViewModel
+import com.example.myfitnesspalclone.presentation.theme.CustomBlue
+import com.example.myfitnesspalclone.presentation.theme.SubtitleTextColor
 import com.example.myfitnesspalclone.presentation.utils.HorizontalSpacer
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
@@ -87,7 +88,8 @@ fun CircleBox(value: Int, text: String, goal: Int?) {
 
         CircularProgressIndicator(
             modifier = Modifier.matchParentSize(),
-            progress = progress
+            progress = progress,
+            indicatorColor = CustomBlue
         )
 
         Column(
@@ -107,7 +109,7 @@ fun CircleBox(value: Int, text: String, goal: Int?) {
                 text = text,
                 style = TextStyle(
                     fontSize = 12.sp,
-                    color = Color(0xFF949aa1)
+                    color = SubtitleTextColor
                 )
             )
         }
@@ -117,5 +119,5 @@ fun CircleBox(value: Int, text: String, goal: Int?) {
 @Composable
 fun TopTitle(title: String, subtitle: String) {
     Text(text = title, style = TextStyle(fontWeight = Bold))
-    Text(text = subtitle, style = TextStyle(color = Color(0xFF949aa1)))
+    Text(text = subtitle, style = TextStyle(color = SubtitleTextColor))
 }

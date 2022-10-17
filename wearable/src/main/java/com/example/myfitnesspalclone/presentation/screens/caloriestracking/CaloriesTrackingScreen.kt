@@ -8,42 +8,34 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.wear.compose.material.CircularProgressIndicator
 import androidx.wear.compose.material.Text
 import androidx.wear.input.RemoteInputIntentHelper
 import androidx.wear.input.wearableExtender
-import com.example.myfitnesspalclone.R
 import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.components.NavButton
-import com.example.myfitnesspalclone.presentation.navigation.Screens
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
+import com.example.myfitnesspalclone.presentation.theme.CustomBlue
+import com.example.myfitnesspalclone.presentation.theme.PLaceHolderText
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -153,7 +145,7 @@ fun CaloriesTrackingScreen(
                         lineHeight = 40.sp
                     )
                 } else {
-                    Text(text = "ex. 250", color = Color(0xFF808080), fontSize = 40.sp)
+                    Text(text = "ex. 250", color = PLaceHolderText, fontSize = 40.sp)
                 }
             }
 
@@ -162,7 +154,7 @@ fun CaloriesTrackingScreen(
 
             Text(
                 text = "cal for Breakfast",
-                color = Color(0xFF339aff),
+                color = CustomBlue,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold
             )

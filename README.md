@@ -17,7 +17,7 @@ The purpose of this app is to showcase:
 <img width="250" alt="tile" src="https://user-images.githubusercontent.com/111345322/196179495-c56c4a2c-c3ed-42a7-8da0-8649e12d1aef.png">
 
 ## TODOs
-   - use colors from theme
+   - ~~use colors from theme~~
    - Sync data with tiles
    - create custom shapes and CircularProgressIndicator with Glance
    - refactor and clean up data layer functions in viewmodels

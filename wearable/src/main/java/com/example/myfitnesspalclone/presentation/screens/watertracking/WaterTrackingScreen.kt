@@ -12,7 +12,6 @@ import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -22,6 +21,8 @@ import androidx.wear.compose.material.Text
 import com.example.myfitnesspalclone.presentation.ClientDataViewModel
 import com.example.myfitnesspalclone.presentation.components.NavButton
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
+import com.example.myfitnesspalclone.presentation.theme.CustomBlue
+import com.example.myfitnesspalclone.presentation.theme.ProgressTrackColor
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 import com.google.android.gms.wearable.DataClient
 
@@ -30,10 +31,10 @@ fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) 
 
     val waterCount = viewModel.waterValue.value
     val waterTarget = viewModel.waterGoal.value
-    val progress = (waterCount.toInt().toFloat() / waterTarget.toFloat())
+    val progress = (waterCount.toFloat() / waterTarget.toFloat())
 
     val waterFloatAnim = animateFloatAsState(
-        targetValue = if (waterCount.toInt() == 0) {
+        targetValue = if (waterCount == 0) {
             0f
         } else {
             progress
@@ -58,7 +59,7 @@ fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) 
                 text = viewModel.waterValue.value.toString(),
                 style = TextStyle(
                     fontSize = 44.sp,
-                    color = Color(0xFF7daade),
+                    color = CustomBlue,
                     fontWeight = FontWeight.Bold
                 )
             )
@@ -75,8 +76,8 @@ fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) 
                 .fillMaxSize()
                 .padding(3.dp),
             progress = waterFloatAnim.value,
-            trackColor = Color(0xFF15202f),
-            indicatorColor = Color(0xFF339aff)
+            trackColor = ProgressTrackColor,
+            indicatorColor = CustomBlue
         )
     }
 }

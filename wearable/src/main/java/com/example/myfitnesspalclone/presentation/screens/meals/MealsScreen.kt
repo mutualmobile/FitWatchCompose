@@ -15,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,6 +24,8 @@ import androidx.wear.compose.material.Picker
 import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberPickerState
 import com.example.myfitnesspalclone.presentation.components.NavButton
+import com.example.myfitnesspalclone.presentation.theme.CustomBlue
+import com.example.myfitnesspalclone.presentation.theme.MealsTextColor
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
@@ -55,7 +56,7 @@ fun MealsScreen(
 
         Text(
             text = "Meals",
-            color = Color(0xFFb3b3b3),
+            color = MealsTextColor,
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -93,7 +94,7 @@ fun MealsPicker(
         Text(
             text = text,
             maxLines = 1,
-            color = Color(0xFF3f99fc),
+            color = CustomBlue,
             style = style,
             modifier = modifier
         )

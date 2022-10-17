@@ -20,7 +20,9 @@ import androidx.wear.compose.material.Text
 import androidx.wear.compose.material.rememberScalingLazyListState
 import com.example.myfitnesspalclone.presentation.data.mockNutrientsList
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
+import com.example.myfitnesspalclone.presentation.theme.NutrientsProgressBGColor
 import com.example.myfitnesspalclone.presentation.theme.Red400
+import com.example.myfitnesspalclone.presentation.theme.Teal200
 import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
@@ -60,7 +62,7 @@ fun NutrientRow(
     name: String,
     value: Float,
     target: Float,
-    color: Color = Color(0xFF232323)
+    color: Color = NutrientsProgressBGColor
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         VerticalSpacer(height = 4.dp)
@@ -81,7 +83,7 @@ fun NutrientRow(
                 .height(2.dp),
             progress = value/target,
             backgroundColor = color,
-            color = Red400
+            color = if(name == "Carbohydrates") Teal200 else Red400
         )
 
     }

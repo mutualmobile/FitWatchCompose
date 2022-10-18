@@ -2,9 +2,12 @@ package com.example.myfitnesspalclone.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import com.example.myfitnesspalclone.presentation.ClientDataViewModel
+import com.example.myfitnesspalclone.presentation.data.Features
 import com.example.myfitnesspalclone.presentation.screens.caloriestracking.CaloriesScreen
 import com.example.myfitnesspalclone.presentation.screens.caloriestracking.CaloriesTrackingScreen
 import com.example.myfitnesspalclone.presentation.screens.featureslist.FeaturesList
@@ -26,25 +29,25 @@ fun FitnessPalNavHost(
         startDestination = Screens.FeatureListScreen.route,
     ) {
         composable(Screens.FeatureListScreen.route) {
-            FeaturesList { id ->
-                when (id) {
-                    0 -> {
+            FeaturesList { selectedItem ->
+                when (selectedItem) {
+                    Features.VIEW_SUMMARY.displayName -> {
                         navController.navigate(Screens.SummaryScreen.route)
                     }
 
-                    1 -> {
+                    Features.NUTRIENTS.displayName -> {
                         navController.navigate(Screens.NutrientsScreen.route)
                     }
 
-                    2 -> {
+                    Features.ADD_CALORIES.displayName -> {
                         navController.navigate(Screens.CaloriesScreen.route)
                     }
 
-                    3 -> {
+                    Features.ADD_WATER.displayName -> {
                         navController.navigate(Screens.WaterTrackingScreen.route)
                     }
 
-                    4 -> {
+                    Features.OPEN_ON_PHONE.displayName -> {
                         onStartHandheldActivity()
                     }
                 }
@@ -62,14 +65,22 @@ fun FitnessPalNavHost(
         }
 
         composable(Screens.MealsScreen.route) {
-            MealsScreen() {
-                navController.navigate(Screens.CaloriesTrackingScreen.route)
+            MealsScreen() { selectedMeal ->
+                navController.navigate("calories_tracking_screen/$selectedMeal")
             }
         }
 
-        composable(Screens.CaloriesTrackingScreen.route) {
-            CaloriesTrackingScreen(viewModel = viewModel) {
-                viewModel.updateCalories(dataClient = dataClient, calories = it)
+        composable(
+            Screens.CaloriesTrackingScreen.route,
+            arguments = listOf(
+                navArgument("selectedMeal") {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val selectedMeal = it.arguments?.getString("selectedMeal")!!
+            CaloriesTrackingScreen(viewModel = viewModel, meal = selectedMeal) {cal ->
+                viewModel.updateCalories(dataClient = dataClient, calories = cal)
                 navController.popBackStack(
                     route = Screens.CaloriesScreen.route,
                     inclusive = false

@@ -6,6 +6,6 @@ sealed class Screens(val route: String) {
     object NutrientsScreen: Screens("nutrients_screen")
     object CaloriesScreen: Screens("calories_screen")
     object MealsScreen: Screens("meals_screen")
-    object CaloriesTrackingScreen: Screens("calories_tracking_screen")
+    object CaloriesTrackingScreen: Screens("calories_tracking_screen/{selectedMeal}")
     object WaterTrackingScreen: Screens("water_screen")
 }

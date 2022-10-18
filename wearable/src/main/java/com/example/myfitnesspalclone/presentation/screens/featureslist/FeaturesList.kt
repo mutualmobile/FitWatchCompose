@@ -21,7 +21,7 @@ import androidx.wear.compose.material.rememberScalingLazyListState
 import com.example.myfitnesspalclone.presentation.data.mockFeatureItems
 
 @Composable
-fun FeaturesList(onClick: (id: Int) -> Unit) {
+fun FeaturesList(onClick: (item: String) -> Unit) {
     val scalingLazyListState = rememberScalingLazyListState()
     Scaffold(
         positionIndicator = {
@@ -36,18 +36,18 @@ fun FeaturesList(onClick: (id: Int) -> Unit) {
                 maxTransitionArea = 0.70f
             )
         ) {
-            items(mockFeatureItems.size) {
+            items(mockFeatureItems.size) { index ->
                 FeatureCard(
                     modifier = Modifier.padding(
-                        top = if (it == 0) {
+                        top = if (index == 0) {
                             24.dp
                         } else {
                             8.dp
                         }
                     ),
-                    mockFeatureItems[it].icon, mockFeatureItems[it].title,
-                    id = it,
-                    onClick = onClick
+                    mockFeatureItems[index].icon, mockFeatureItems[index].title,
+                    id = index,
+                    onClick = { onClick(mockFeatureItems[it].title) }
                 )
             }
         }

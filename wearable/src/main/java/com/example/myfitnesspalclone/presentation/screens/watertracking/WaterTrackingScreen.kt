@@ -29,7 +29,7 @@ import com.google.android.gms.wearable.DataClient
 @Composable
 fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) {
 
-    val waterCount = viewModel.waterValue.value
+    var waterCount = viewModel.waterValue.value
     val waterTarget = viewModel.waterGoal.value
     val progress = (waterCount.toFloat() / waterTarget.toFloat())
 
@@ -67,7 +67,8 @@ fun WaterTrackingScreen(viewModel: ClientDataViewModel, dataClient: DataClient) 
             VerticalSpacer(height = 4.dp)
 
             NavButton(imageVector = Icons.Rounded.Add) {
-                viewModel.updateWater(dataClient = dataClient, waterValue = waterCount + 1)
+                waterCount += 1
+                viewModel.updateWater(dataClient = dataClient, waterValue = waterCount)
             }
         }
 

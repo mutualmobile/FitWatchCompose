@@ -10,26 +10,35 @@ data class FeatureListItem(
 val mockFeatureItems = listOf(
     FeatureListItem(
         icon = R.drawable.ic_summary,
-        title = "View summary"
+        title = Features.VIEW_SUMMARY.displayName
     ),
     FeatureListItem(
         icon = R.drawable.ic_align,
-        title = "Nutrients"
+        title = Features.NUTRIENTS.displayName
     ),
     FeatureListItem(
         icon = R.drawable.ic_fire,
-        title = "Add calories"
+        title = Features.ADD_CALORIES.displayName
     ),
     FeatureListItem(
         icon = R.drawable.ic_water,
-        title = "Add water"
+        title = Features.ADD_WATER.displayName
     ),
     FeatureListItem(
         icon = R.drawable.ic_phone,
-        title = "Open on phone"
+        title = Features.OPEN_ON_PHONE.displayName
     ),
     FeatureListItem(
         icon = R.drawable.ic_logout,
-        title = "Log out"
+        title = Features.LOG_OUT.displayName
     ),
 )
+
+enum class Features(val displayName: String) {
+    VIEW_SUMMARY("View summary"),
+    NUTRIENTS("Nutrients"),
+    ADD_CALORIES("Add calories"),
+    ADD_WATER("Add water"),
+    OPEN_ON_PHONE("Open on phone"),
+    LOG_OUT("Log out")
+}

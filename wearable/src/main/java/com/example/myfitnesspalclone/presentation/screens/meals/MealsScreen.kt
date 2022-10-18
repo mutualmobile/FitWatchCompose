@@ -30,7 +30,7 @@ import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 
 @Composable
 fun MealsScreen(
-    onNavButtonClick: () -> Unit
+    onNavButtonClick: (meal: String) -> Unit
 ) {
     val pickerOptions = remember {
         mutableStateListOf(
@@ -75,7 +75,7 @@ fun MealsScreen(
         VerticalSpacer(height = (12.dp))
 
         NavButton(imageVector = Icons.Default.ArrowForward) {
-            onNavButtonClick()
+            onNavButtonClick(pickerOptions[pickerState.selectedOption])
         }
 
     }

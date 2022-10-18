@@ -7,7 +7,7 @@ The purpose of this app is to showcase:
 - Working with Jetpack Compose for Wear OS, to create beautiful UIs using the power of compose
 - working with separate modules for handheld and wear os device
 - working
-  with [Glance](https://android-developers.googleblog.com/2022/01/announcing-glance-tiles-for-wear-os.html)
+  with [Glance](https://developer.android.com/jetpack/androidx/releases/glance)
   for Wear OS to create Tiles UI
 - working with Data layer APIs to connect phone apps and wear os apps so that data from these
   devices can be synced seamlessly
@@ -33,10 +33,11 @@ The purpose of this app is to showcase:
 
 ## Tech Stack
 
-|Tools | Link|
-|---|---|
-|🤖 Kotlin|[Kotlin](https://kotlinlang.org/)|
-|💚 Jetpack Compose|[Compose](https://developer.android.com/jetpack/compose)|
-|🌊 Coroutines|[Kotlin Coroutines](https://developer.android.com/kotlin/coroutines)|
-|💚 Compose for Wear OS|[Compose Wear OS](https://developer.android.com/training/wearables/compose)|
-|⌚️ Glance for Tiles|[Wear Os Tiles with Glance](https://developer.android.com/jetpack/androidx/releases/glance)|
+| Tools                  | Link                                                                                                                   |
+|------------------------|------------------------------------------------------------------------------------------------------------------------|
+| 🤖 Kotlin              | [Kotlin](https://kotlinlang.org/)                                                                                      |
+| 💚 Jetpack Compose     | [Compose](https://developer.android.com/jetpack/compose)                                                               |
+| 🌊 Coroutines          | [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines)                                                   |
+| 💚 Compose for Wear OS | [Compose Wear OS](https://developer.android.com/training/wearables/compose)                                            |
+| ⌚️ Glance for Tiles    | [Glance Tiles for Wear OS](https://android-developers.googleblog.com/2022/01/announcing-glance-tiles-for-wear-os.html) |
+| 📟 Data Layer API      | [Data Layer](https://developer.android.com/training/wearables/data/data-layer)                                         |

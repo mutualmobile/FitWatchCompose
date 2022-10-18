@@ -42,7 +42,8 @@ import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 @Composable
 fun CaloriesTrackingScreen(
     viewModel: ClientDataViewModel,
-    onDoneButtonClick: (calories: Int) -> Unit
+    meal: String,
+    onDoneButtonClick: (calories: Int) -> Unit,
 ) {
 //    var textFieldValue by remember { mutableStateOf("") }
 //    val keyboardController = LocalSoftwareKeyboardController.current
@@ -153,7 +154,7 @@ fun CaloriesTrackingScreen(
             VerticalSpacer(height = 4.dp)
 
             Text(
-                text = "cal for Breakfast",
+                text = "cal for $meal",
                 color = CustomBlue,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold

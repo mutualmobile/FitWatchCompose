@@ -14,11 +14,26 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutionException
 
-class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
+class ClientDataViewModel : ViewModel(), DataClient.OnDataChangedListener {
 
     val calories = mutableStateOf(0)
     val waterValue = mutableStateOf(0)
     override fun onDataChanged(dataEvents: DataEventBuffer) {
+        getCalories(dataEvents)
+        getWaterValue(dataEvents)
+    }
+
+    fun updateCalories(dataClient: DataClient, calories: Int, caloriesGoal: Int) {
+        updateCaloriesValue(dataClient, calories)
+        updateCaloriesGoal(dataClient, caloriesGoal)
+    }
+
+    fun updateWater(dataClient: DataClient, waterValue: Int, waterGoal: Int) {
+        updateWaterValue(dataClient, waterValue)
+        updateWaterGoal(dataClient, waterGoal)
+    }
+
+    private fun getCalories(dataEvents: DataEventBuffer) {
         viewModelScope.launch {
             dataEvents.forEach { event ->
                 if (event.type == DataEvent.TYPE_CHANGED) {
@@ -31,7 +46,9 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
                 }
             }
         }
+    }
 
+    private fun getWaterValue(dataEvents: DataEventBuffer) {
         viewModelScope.launch {
             dataEvents.forEach { event ->
                 if (event.type == DataEvent.TYPE_CHANGED) {
@@ -46,7 +63,7 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
         }
     }
 
-    fun updateCalories(dataClient: DataClient, calories: Int, caloriesGoal: Int) {
+    private fun updateCaloriesValue(dataClient: DataClient, calories: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val putDataMapRequest = PutDataMapRequest.create(CALORIES_PATH)
             putDataMapRequest.dataMap.putInt(CALORIES_KEY, calories)
@@ -57,15 +74,15 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
                 Tasks.await(putDataTask).apply {
                     Log.d("UpdateCalories", "updateCalories: Success, value: $calories")
                 }
-            }
-            catch (e: ExecutionException) {
+            } catch (e: ExecutionException) {
                 Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
-            }
-            catch (e: InterruptedException) {
+            } catch (e: InterruptedException) {
                 Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
             }
         }
+    }
 
+    private fun updateCaloriesGoal(dataClient: DataClient, caloriesGoal: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val putDataMapRequest = PutDataMapRequest.create(CALORIES_GOAL_PATH)
             putDataMapRequest.dataMap.putInt(CALORIES_GOAL_KEY, caloriesGoal)
@@ -74,19 +91,17 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
             val putDataTask = dataClient.putDataItem(putDataReq)
             try {
                 Tasks.await(putDataTask).apply {
-                    Log.d("UpdateCalories", "updateCalories: Success, value: $caloriesGoal")
+                    Log.d("UpdateCaloriesGoal", "updateCaloriesGoal: Success, value: $caloriesGoal")
                 }
-            }
-            catch (e: ExecutionException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
-            }
-            catch (e: InterruptedException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
+            } catch (e: ExecutionException) {
+                Log.d("UpdateCaloriesGoal", "updateCaloriesGoal: Failure ${e.printStackTrace()}")
+            } catch (e: InterruptedException) {
+                Log.d("UpdateCaloriesGoal", "updateCaloriesGoal: Failure ${e.printStackTrace()}")
             }
         }
     }
 
-    fun updateWater(dataClient: DataClient, waterValue: Int, waterGoal: Int) {
+    private fun updateWaterValue(dataClient: DataClient, waterValue: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val putDataMapRequest = PutDataMapRequest.create(WATER_PATH)
             putDataMapRequest.dataMap.putInt(WATER_KEY, waterValue)
@@ -95,17 +110,17 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
             val putDataTask = dataClient.putDataItem(putDataReq)
             try {
                 Tasks.await(putDataTask).apply {
-                    Log.d("UpdateCalories", "updateCalories: Success, value: $waterValue")
+                    Log.d("UpdateWater", "updateWater: Success, value: $waterValue")
                 }
-            }
-            catch (e: ExecutionException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
-            }
-            catch (e: InterruptedException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
+            } catch (e: ExecutionException) {
+                Log.d("UpdateWater", "updateWater: Failure ${e.printStackTrace()}")
+            } catch (e: InterruptedException) {
+                Log.d("UpdateWater", "updateWater: Failure ${e.printStackTrace()}")
             }
         }
+    }
 
+    private fun updateWaterGoal(dataClient: DataClient, waterGoal: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val putDataMapRequest = PutDataMapRequest.create(WATER_GOAL_PATH)
             putDataMapRequest.dataMap.putInt(WATER_GOAL_KEY, waterGoal)
@@ -114,14 +129,12 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener {
             val putDataTask = dataClient.putDataItem(putDataReq)
             try {
                 Tasks.await(putDataTask).apply {
-                    Log.d("UpdateCalories", "updateCalories: Success, value: $waterGoal")
+                    Log.d("UpdateWaterGoal", "updateWaterGoal: Success, value: $waterGoal")
                 }
-            }
-            catch (e: ExecutionException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
-            }
-            catch (e: InterruptedException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
+            } catch (e: ExecutionException) {
+                Log.d("UpdateWaterGoal", "UpdateWaterGoal: Failure ${e.printStackTrace()}")
+            } catch (e: InterruptedException) {
+                Log.d("UpdateWaterGoal", "UpdateWaterGoal: Failure ${e.printStackTrace()}")
             }
         }
     }

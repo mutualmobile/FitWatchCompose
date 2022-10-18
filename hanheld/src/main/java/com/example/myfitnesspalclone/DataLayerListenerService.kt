@@ -1,9 +1,7 @@
 package com.example.myfitnesspalclone
 
 import android.content.Intent
-import android.widget.Toast
 import com.google.android.gms.wearable.MessageEvent
-import com.google.android.gms.wearable.Node
 import com.google.android.gms.wearable.WearableListenerService
 
 class DataLayerListenerService: WearableListenerService() {
@@ -19,10 +17,6 @@ class DataLayerListenerService: WearableListenerService() {
                 )
             }
         }
-    }
-
-    override fun onPeerConnected(p0: Node) {
-        Toast.makeText(this, "Peer connected", Toast.LENGTH_LONG).show()
     }
 
     companion object {

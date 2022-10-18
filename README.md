@@ -20,7 +20,7 @@ The purpose of this app is to showcase:
    - ~~use colors from theme~~
    - Sync data with tiles
    - create custom shapes and CircularProgressIndicator with Glance
-   - refactor and clean up data layer functions in viewmodels
+   - ~~refactor and clean up data layer functions in viewmodels~~
    - fix crashes on mobile app
    - show numbers only keyboard in wear os application
    - fix bugs in syncing data items (sometimes calories won't sync)

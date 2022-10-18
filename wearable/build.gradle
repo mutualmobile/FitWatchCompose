@@ -73,11 +73,10 @@ dependencies {
     // Glance Tiles
     implementation "androidx.glance:glance-wear-tiles:1.0.0-alpha05"
 
+    // Data Layer API
     implementation "com.google.android.gms:play-services-wearable:18.0.0"
 
+    // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.6.4"
-
-    implementation "com.google.android.horologist:horologist-composables:0.1.13"
-
 }

@@ -22,57 +22,10 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener{
     val waterGoal = mutableStateOf(10)
 
     override fun onDataChanged(dataEvents: DataEventBuffer) {
-        viewModelScope.launch {
-            dataEvents.forEach { event ->
-                if (event.type == DataEvent.TYPE_CHANGED) {
-                    // DataItem Changed
-                    val item = event.dataItem
-                    if (item.uri.path?.compareTo(CALORIES_PATH) == 0) {
-                        val dataMap = DataMapItem.fromDataItem(item).dataMap
-                        calories.value = dataMap.getInt(CALORIES_KEY)
-                    }
-                }
-            }
-        }
-
-        viewModelScope.launch {
-            dataEvents.forEach { event ->
-                if (event.type == DataEvent.TYPE_CHANGED) {
-                    // DataItem Changed
-                    val item = event.dataItem
-                    if (item.uri.path?.compareTo(CALORIES_GOAL_PATH) == 0) {
-                        val dataMap = DataMapItem.fromDataItem(item).dataMap
-                        caloriesGoal.value = dataMap.getInt(CALORIES_GOAL_KEY)
-                    }
-                }
-            }
-        }
-
-        viewModelScope.launch {
-            dataEvents.forEach { event ->
-                if (event.type == DataEvent.TYPE_CHANGED) {
-                    // DataItem Changed
-                    val item = event.dataItem
-                    if (item.uri.path?.compareTo(WATER_PATH) == 0) {
-                        val dataMap = DataMapItem.fromDataItem(item).dataMap
-                        waterValue.value = dataMap.getInt(WATER_KEY)
-                    }
-                }
-            }
-        }
-
-        viewModelScope.launch {
-            dataEvents.forEach { event ->
-                if (event.type == DataEvent.TYPE_CHANGED) {
-                    // DataItem Changed
-                    val item = event.dataItem
-                    if (item.uri.path?.compareTo(WATER_GOAL_PATH) == 0) {
-                        val dataMap = DataMapItem.fromDataItem(item).dataMap
-                        waterGoal.value = dataMap.getInt(WATER_GOAL_KEY)
-                    }
-                }
-            }
-        }
+        getCalories(dataEvents)
+        getCaloriesGoals(dataEvents)
+        getWaterValue(dataEvents)
+        getWaterGoal(dataEvents)
     }
 
     fun updateCalories(dataClient: DataClient, calories: Int) {
@@ -105,14 +58,74 @@ class ClientDataViewModel: ViewModel(), DataClient.OnDataChangedListener{
             val putDataTask = dataClient.putDataItem(putDataReq)
             try {
                 Tasks.await(putDataTask).apply {
-                    Log.d("UpdateCalories", "updateCalories: Success, value: $waterValue")
+                    Log.d("UpdateWater", "updateWaterValue: Success, value: $waterValue")
                 }
             }
             catch (e: ExecutionException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
+                Log.d("UpdateWater", "updateWaterValue: Failure ${e.printStackTrace()}")
             }
             catch (e: InterruptedException) {
-                Log.d("UpdateCalories", "updateCalories: Failure ${e.printStackTrace()}")
+                Log.d("UpdateWater", "updateWaterValue: Failure ${e.printStackTrace()}")
+            }
+        }
+    }
+
+    private fun getCalories(dataEvents: DataEventBuffer) {
+        viewModelScope.launch {
+            dataEvents.forEach { event ->
+                if (event.type == DataEvent.TYPE_CHANGED) {
+                    // DataItem Changed
+                    val item = event.dataItem
+                    if (item.uri.path?.compareTo(CALORIES_PATH) == 0) {
+                        val dataMap = DataMapItem.fromDataItem(item).dataMap
+                        calories.value = dataMap.getInt(CALORIES_KEY)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getCaloriesGoals(dataEvents: DataEventBuffer) {
+        viewModelScope.launch {
+            dataEvents.forEach { event ->
+                if (event.type == DataEvent.TYPE_CHANGED) {
+                    // DataItem Changed
+                    val item = event.dataItem
+                    if (item.uri.path?.compareTo(CALORIES_GOAL_PATH) == 0) {
+                        val dataMap = DataMapItem.fromDataItem(item).dataMap
+                        caloriesGoal.value = dataMap.getInt(CALORIES_GOAL_KEY)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getWaterValue(dataEvents: DataEventBuffer) {
+        viewModelScope.launch {
+            dataEvents.forEach { event ->
+                if (event.type == DataEvent.TYPE_CHANGED) {
+                    // DataItem Changed
+                    val item = event.dataItem
+                    if (item.uri.path?.compareTo(WATER_PATH) == 0) {
+                        val dataMap = DataMapItem.fromDataItem(item).dataMap
+                        waterValue.value = dataMap.getInt(WATER_KEY)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getWaterGoal(dataEvents: DataEventBuffer) {
+        viewModelScope.launch {
+            dataEvents.forEach { event ->
+                if (event.type == DataEvent.TYPE_CHANGED) {
+                    // DataItem Changed
+                    val item = event.dataItem
+                    if (item.uri.path?.compareTo(WATER_GOAL_PATH) == 0) {
+                        val dataMap = DataMapItem.fromDataItem(item).dataMap
+                        waterGoal.value = dataMap.getInt(WATER_GOAL_KEY)
+                    }
+                }
             }
         }
     }

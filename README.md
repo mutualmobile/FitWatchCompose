@@ -20,17 +20,6 @@ The purpose of this app is to showcase:
 
 <img width="250" alt="tile" src="https://user-images.githubusercontent.com/111345322/196179495-c56c4a2c-c3ed-42a7-8da0-8649e12d1aef.png">
 
-## TODOs
-
-- ~~use colors from theme~~
-- Sync data with tiles
-- create custom shapes and CircularProgressIndicator with Glance
-- ~~refactor and clean up data layer functions in viewmodels~~
-- fix crashes on mobile app
-- show numbers only keyboard in wear os application
-- fix bugs in syncing data items (sometimes calories won't sync)
-- Sync data when the devices are not connected
-
 ## Tech Stack
 
 | Tools                  | Link                                                                                                                   |
@@ -41,3 +30,14 @@ The purpose of this app is to showcase:
 | 💚 Compose for Wear OS | [Compose Wear OS](https://developer.android.com/training/wearables/compose)                                            |
 | ⌚️ Glance for Tiles    | [Glance Tiles for Wear OS](https://android-developers.googleblog.com/2022/01/announcing-glance-tiles-for-wear-os.html) |
 | 📟 Data Layer API      | [Data Layer](https://developer.android.com/training/wearables/data/data-layer)                                         |
+
+## TODOs
+
+- ~~use colors from theme~~
+- Sync data with tiles
+- create custom shapes and CircularProgressIndicator with Glance
+- ~~refactor and clean up data layer functions in viewmodels~~
+- fix crashes on mobile app
+- show numbers only keyboard in wear os application
+- fix bugs in syncing data items (sometimes calories won't sync)
+- Sync data when the devices are not connected

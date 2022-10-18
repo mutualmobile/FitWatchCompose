@@ -30,6 +30,7 @@ The purpose of this app is to showcase:
 - fix crashes on mobile app
 - show numbers only keyboard in wear os application
 - fix bugs in syncing data items (sometimes calories won't sync)
+- Sync data when the devices are not connected
 
 ## Tech Stack
 

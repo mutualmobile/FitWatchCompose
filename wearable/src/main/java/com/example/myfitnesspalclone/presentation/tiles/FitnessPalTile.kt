@@ -20,6 +20,13 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import androidx.glance.wear.tiles.GlanceTileService
+import androidx.glance.wear.tiles.curved.AnchorType
+import androidx.glance.wear.tiles.curved.CurvedRow
+import androidx.glance.wear.tiles.curved.GlanceCurvedModifier
+import androidx.glance.wear.tiles.curved.sweepAngleDegrees
+import androidx.glance.wear.tiles.curved.thickness
+import com.example.myfitnesspalclone.presentation.theme.CustomBlue
+import com.example.myfitnesspalclone.presentation.theme.NutrientsProgressBGColor
 
 class FitnessPalTile : GlanceTileService() {
 
@@ -38,15 +45,16 @@ class FitnessPalTile : GlanceTileService() {
                 modifier = GlanceModifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                GlanceCircleBox(value = 0, text = "carbs", progress = 0f)
+
+                GlanceCircleBox(value = 350, text = "carbs", target = 500)
 
                 GlanceHorizontalSpacer(width = 4.dp)
 
-                GlanceCircleBox(0, "fat", 0f)
+                GlanceCircleBox(10, "fat", target = 30)
 
                 GlanceHorizontalSpacer(width = 4.dp)
 
-                GlanceCircleBox(0, "protein", 0f)
+                GlanceCircleBox(32, "protein", target = 60)
 
             }
 
@@ -54,11 +62,11 @@ class FitnessPalTile : GlanceTileService() {
                 modifier = GlanceModifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                GlanceCircleBox(0, "cal", 0f)
+                GlanceCircleBox(780, "cal", target = 1800)
 
                 GlanceHorizontalSpacer(width = 4.dp)
 
-                GlanceCircleBox(0, "water", 0f)
+                GlanceCircleBox(6, "water", target = 10)
 
             }
         }
@@ -66,16 +74,37 @@ class FitnessPalTile : GlanceTileService() {
 }
 
 @Composable
-fun GlanceCircleBox(value: Int, text: String, progress: Float) {
+fun GlanceCircleBox(value: Int, text: String, target: Int) {
     Box(
         modifier = GlanceModifier
             .size(58.dp),
         contentAlignment = Alignment.Center
     ) {
-//
-//        CircularProgressIndicator(
-//            modifier = Modifier.size(58.dp),
-//        )
+
+        val sweepProgress = (value.toFloat() / target.toFloat()) * 360f
+
+        CurvedRow {
+            curvedLine(
+                color = ColorProvider(NutrientsProgressBGColor),
+                curvedModifier =
+                GlanceCurvedModifier
+                    .sweepAngleDegrees(360f)
+                    .thickness(3.dp)
+            )
+        }
+
+        CurvedRow(
+            anchorDegrees = 270f,
+            anchorType = AnchorType.Start
+        ) {
+            curvedLine(
+                color = ColorProvider(CustomBlue),
+                curvedModifier =
+                GlanceCurvedModifier
+                    .sweepAngleDegrees(sweepProgress)
+                    .thickness(3.dp)
+            )
+        }
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

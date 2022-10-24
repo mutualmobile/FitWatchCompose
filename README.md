@@ -67,17 +67,12 @@ A clone of MyFitnessPal Android app for Wear OS built using Jetpack compose.
   <tr>
        <td><img width="250" alt="nutrients" src="https://user-images.githubusercontent.com/111345322/196328056-6df0b05f-d55e-410a-bc78-7fe2d8869608.gif"></td>     <td><img width="250" alt="dialog_confirmation" src="https://user-images.githubusercontent.com/111345322/196179475-ac41ba1e-5dd6-4d43-89e6-5687b4119f4e.png"></td>
   </tr>
-</table>
 
-
-### Work in Progress:
-
-<table style="width:100%">
-  <tr>
+<tr>
     <th>Tile UI</th>
   </tr>
   <tr>
-    <td><img width="250" alt="tile" src="https://user-images.githubusercontent.com/111345322/196179495-c56c4a2c-c3ed-42a7-8da0-8649e12d1aef.png"></td> 
+    <td><img width="250" alt="Screenshot 2022-10-24 at 5 06 06 PM" src="https://user-images.githubusercontent.com/111345322/197517405-d91cacfe-a6d2-40fd-830e-73f37718aafb.png"></td> 
   </tr>
 </table>
 
@@ -96,7 +91,7 @@ A clone of MyFitnessPal Android app for Wear OS built using Jetpack compose.
 
 - [x] ~~use colors from theme~~
 - [ ] Sync data with tiles
-- [ ] create custom shapes and CircularProgressIndicator with Glance
+- [x] ~~create custom shapes and CircularProgressIndicator with Glance~~
 - [x] ~~refactor and clean up data layer functions in viewmodels~~
 - [ ] fix crashes on mobile app
 - [ ] show numbers only keyboard in wear os application

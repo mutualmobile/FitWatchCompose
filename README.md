@@ -62,18 +62,13 @@ A clone of MyFitnessPal Android app for Wear OS built using Jetpack compose.
   <tr>
             <th>Nutrients</th>
                 <th>Success Dialog</th>
+                <th>Tile UI</th>
 
   </tr>
   <tr>
-       <td><img width="250" alt="nutrients" src="https://user-images.githubusercontent.com/111345322/196328056-6df0b05f-d55e-410a-bc78-7fe2d8869608.gif"></td>     <td><img width="250" alt="dialog_confirmation" src="https://user-images.githubusercontent.com/111345322/196179475-ac41ba1e-5dd6-4d43-89e6-5687b4119f4e.png"></td>
+       <td><img width="250" alt="nutrients" src="https://user-images.githubusercontent.com/111345322/196328056-6df0b05f-d55e-410a-bc78-7fe2d8869608.gif"></td>     <td><img width="250" alt="dialog_confirmation" src="https://user-images.githubusercontent.com/111345322/196179475-ac41ba1e-5dd6-4d43-89e6-5687b4119f4e.png"></td>     <td><img width="250" alt="Screenshot 2022-10-24 at 5 06 06 PM" src="https://user-images.githubusercontent.com/111345322/197517405-d91cacfe-a6d2-40fd-830e-73f37718aafb.png"></td>
   </tr>
 
-<tr>
-    <th>Tile UI</th>
-  </tr>
-  <tr>
-    <td><img width="250" alt="Screenshot 2022-10-24 at 5 06 06 PM" src="https://user-images.githubusercontent.com/111345322/197517405-d91cacfe-a6d2-40fd-830e-73f37718aafb.png"></td> 
-  </tr>
 </table>
 
 ## 🛠 Tech Stack
@@ -97,7 +92,6 @@ A clone of MyFitnessPal Android app for Wear OS built using Jetpack compose.
 - [ ] show numbers only keyboard in wear os application
 - [ ] fix bugs in syncing data items (sometimes calories won't sync)
 - [ ] Sync data when the devices are not connected!
-
 
 ## 🤝 Contributors
 

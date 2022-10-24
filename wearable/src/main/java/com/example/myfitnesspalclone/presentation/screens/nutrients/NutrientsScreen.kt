@@ -17,6 +17,8 @@ import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.Vignette
+import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
 import com.example.myfitnesspalclone.presentation.data.mockNutrientsList
 import com.example.myfitnesspalclone.presentation.screens.summarylist.TopTitle
@@ -29,9 +31,9 @@ import com.example.myfitnesspalclone.presentation.utils.VerticalSpacer
 fun NutrientsScreen() {
     val scalingLazyListState = rememberScalingLazyListState()
 
-
     Scaffold(
-        positionIndicator = { PositionIndicator(scalingLazyListState = scalingLazyListState) }
+        positionIndicator = { PositionIndicator(scalingLazyListState = scalingLazyListState) },
+        vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) }
     ) {
         ScalingLazyColumn(state = scalingLazyListState) {
             item {

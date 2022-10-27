@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myfitnesspalclone'
+    namespace 'com.example.fitwatch'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myfitnesspalclone"
+        applicationId "com.example.fitwatch"
         minSdk 30
         targetSdk 33
         versionCode 1

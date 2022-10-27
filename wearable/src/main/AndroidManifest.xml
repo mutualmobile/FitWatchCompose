@@ -24,9 +24,9 @@
             android:value="true" />
 
         <service
-            android:name="com.example.myfitnesspalclone.presentation.tiles.FitWatchTile"
+            android:name="com.example.fitwatch.presentation.tiles.FitWatchTile"
             android:exported="true"
-            android:label="OTP Tile">
+            android:label="FitWatch Tile">
 
             <intent-filter>
                 <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />

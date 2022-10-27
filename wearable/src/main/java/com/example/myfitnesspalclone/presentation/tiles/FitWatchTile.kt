@@ -28,7 +28,7 @@ import androidx.glance.wear.tiles.curved.thickness
 import com.example.myfitnesspalclone.presentation.theme.CustomBlue
 import com.example.myfitnesspalclone.presentation.theme.NutrientsProgressBGColor
 
-class FitnessPalTile : GlanceTileService() {
+class FitWatchTile : GlanceTileService() {
 
     @Composable
     override fun Content() {

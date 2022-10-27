@@ -36,7 +36,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myfitnesspalclone.ui.theme.MyFitnessPalCloneTheme
+import com.example.myfitnesspalclone.ui.theme.FitnessWatchTheme
 import com.google.android.gms.wearable.Wearable
 
 class MainActivity : ComponentActivity() {
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
 
             val keyboardController = LocalSoftwareKeyboardController.current
 
-            MyFitnessPalCloneTheme {
+            FitnessWatchTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

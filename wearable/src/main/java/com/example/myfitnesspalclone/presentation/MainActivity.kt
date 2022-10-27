@@ -29,7 +29,7 @@ import androidx.wear.compose.material.dialog.Confirmation
 import androidx.wear.compose.material.dialog.Dialog
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.example.myfitnesspalclone.R
-import com.example.myfitnesspalclone.presentation.navigation.FitnessPalNavHost
+import com.example.myfitnesspalclone.presentation.navigation.FitWatchNavHost
 import com.google.android.gms.wearable.Wearable
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
             var confirmationShowDialog by remember { mutableStateOf(false) }
 
             val navHostController = rememberSwipeDismissableNavController()
-            FitnessPalNavHost(
+            FitWatchNavHost(
                 navController = navHostController,
                 viewModel = viewModel,
                 dataClient = dataClient,

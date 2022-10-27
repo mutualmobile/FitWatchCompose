@@ -1,4 +1,4 @@
-![](https://user-images.githubusercontent.com/111345322/198270850-484d6e64-fdee-4ec3-b095-918ec8e3fc7f.png)
+![](https://user-images.githubusercontent.com/111345322/198274290-fcc10a4b-8f57-492a-8bbb-7c06d53d8c5f.png)
 
 # FitWatch
 

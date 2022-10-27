@@ -18,7 +18,7 @@ import com.example.myfitnesspalclone.presentation.screens.watertracking.WaterTra
 import com.google.android.gms.wearable.DataClient
 
 @Composable
-fun FitnessPalNavHost(
+fun FitWatchNavHost(
     navController: NavHostController,
     viewModel: ClientDataViewModel,
     dataClient: DataClient,

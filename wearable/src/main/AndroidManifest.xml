@@ -24,7 +24,7 @@
             android:value="true" />
 
         <service
-            android:name="com.example.myfitnesspalclone.presentation.tiles.FitnessPalTile"
+            android:name="com.example.myfitnesspalclone.presentation.tiles.FitWatchTile"
             android:exported="true"
             android:label="OTP Tile">
 

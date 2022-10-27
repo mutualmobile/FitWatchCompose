@@ -1,8 +1,8 @@
-![](https://user-images.githubusercontent.com/10808436/196674444-5bcb8cec-4155-49e5-a373-b59d3c9d156e.png)
+![](https://user-images.githubusercontent.com/111345322/198270850-484d6e64-fdee-4ec3-b095-918ec8e3fc7f.png)
 
-# MyFitnessPal clone
+# FitWatch
 
-A clone of MyFitnessPal Android app for Wear OS built using Jetpack compose.
+An Android app for Wear OS built using Jetpack compose.
 
 <p align="left">
       <a href = "https://developer.android.com/jetpack/androidx/versions/all-channel#february_23_2022">
